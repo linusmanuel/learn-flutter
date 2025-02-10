@@ -1,67 +1,40 @@
 import 'package:flutter/material.dart';
 
-myGridLayout() {
+
+_buildContainer({Color color = Colors.black}) {
+  return Container(
+    color: color,
+    width: 120,
+    height: 120,
+  );
+}
+
+Column myGridLayout() {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
-            color: Colors.red,
-            width: 100,
-            height: 100,
-          ),
-          Container(
-            color: Colors.orange,
-            width: 100,
-            height: 100,
-          ),
-          Container(
-            color: Colors.amber,
-            width: 100,
-            height: 100,
-          )
+          _buildContainer(color: Colors.red),
+          _buildContainer(color: Colors.orange),
+          _buildContainer(color: Colors.amber)
         ],
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
-            color: Colors.green,
-            width: 100,
-            height: 100,
-          ),
-          Container(
-            color: Colors.cyan,
-            width: 100,
-            height: 100,
-          ),
-          Container(
-            color: Colors.blue,
-            width: 100,
-            height: 100,
-          )
+          _buildContainer(color: Colors.green),
+          _buildContainer(color: Colors.cyan),
+          _buildContainer(color: Colors.blue)
         ],
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
-            color: Colors.purple,
-            width: 100,
-            height: 100,
-          ),
-          Container(
-            color: Colors.pink,
-            width: 100,
-            height: 100,
-          ),
-          Container(
-            color: Colors.white,
-            width: 100,
-            height: 100,
-          )
+          _buildContainer(color: Colors.purple),
+          _buildContainer(color: Colors.pink),
+          _buildContainer(color: Colors.white)
         ],
       )
     ],
