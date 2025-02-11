@@ -23,27 +23,13 @@ class MyApp extends StatelessWidget {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        body: Container(
-          child: Stack(
-            children: [
-              Container(
-                color: Colors.blue,
-                height: 140,
-              ),
-              Container(
-                color: Colors.white,
-                height: 100,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(color: Colors.black26, width: 72, height: 100,),
-                    Text("Aprender FLutter"),
-                    ElevatedButton(onPressed: (){}, child: Icon(Icons.arrow_drop_up))
-                  ],
-                ),
-              )
-            ],
-          ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Task('Aprender flutter'),
+            Task('Ir ao ginásio'),
+            Task('Jogar bola'),
+          ],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
@@ -53,3 +39,35 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class Task extends StatelessWidget {
+  final String nome;
+  const Task(this.nome, {super.key,});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Stack(
+        children: [
+          Container(
+            color: Colors.blue,
+            height: 140,
+          ),
+          Container(
+            color: Colors.white,
+            height: 100,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(color: Colors.black26, width: 72, height: 100,),
+                Text(nome),
+                ElevatedButton(onPressed: (){}, child: Icon(Icons.arrow_drop_up))
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
