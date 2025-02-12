@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
+          leading: Container(), leadingWidth: 50,
           backgroundColor: Colors.blue,
           title: Text(
             "Tarefas",
@@ -88,14 +89,25 @@ class _TaskState extends State<Task> {
                             style: TextStyle(fontSize: 24),
                             overflow: TextOverflow.ellipsis,
                           )),
-                      ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              nivel++;
-                            });
-                            print('Subiu para nível: $nivel');
-                          },
-                          child: Icon(Icons.arrow_drop_up))
+                      Container(
+                        width: 80,
+                        height: 50,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                nivel++;
+                              });
+                              print('Subiu para nível: $nivel');
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(Icons.arrow_drop_up),
+                                Text("UP", style: TextStyle(fontSize: 12),)
+                              ],
+                            )),
+                      ),
                     ],
                   ),
                 ),
