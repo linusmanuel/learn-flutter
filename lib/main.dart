@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          leading: Container(), leadingWidth: 50,
+          leading: Container(),
+          leadingWidth: 50,
           backgroundColor: Colors.blue,
           title: Text(
             "Tarefas",
@@ -26,12 +27,11 @@ class MyApp extends StatelessWidget {
         ),
         body: ListView(
           children: [
-            Task('Aprender flutter'),
-            Task('Ir ao ginásio'),
-            Task('Jogar bola'),
-            Task('Andar de mãos dadas'),
-            Task('Estudar programação'),
-            Task('Reconhecer os docs com o amigo do Martins'),
+            Task('Aprender Flutter', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
+            Task('Andar de Bike', 'https://images.pexels.com/photos/161172/cycling-bike-trail-sport-161172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+            Task('Meditar', 'https://thebogotapost.com/wp-content/uploads/2017/06/636052464065850579-137719760_flyer-image-1.jpg'),
+            Task('Ler', 'https://manhattanmentalhealthcounseling.com/wp-content/uploads/2019/06/Top-5-Scientific-Findings-on-MeditationMindfulness-881x710.jpeg'),
+            Task('Jogar', 'https://i.ibb.co/tB29PZB/kako-epifania-2022-2-c-pia.jpg'),
           ],
         ),
         floatingActionButton: FloatingActionButton(
@@ -45,9 +45,11 @@ class MyApp extends StatelessWidget {
 
 class Task extends StatefulWidget {
   final String nome;
+  final String foto;
 
   const Task(
-    this.nome, {
+    this.nome,
+    this.foto, {
     super.key,
   });
 
@@ -81,6 +83,9 @@ class _TaskState extends State<Task> {
                         color: Colors.black26,
                         width: 72,
                         height: 100,
+                        child: Image.network(widget.foto,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                       Container(
                           width: 200,
@@ -104,7 +109,10 @@ class _TaskState extends State<Task> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Icon(Icons.arrow_drop_up),
-                                Text("UP", style: TextStyle(fontSize: 12),)
+                                Text(
+                                  "UP",
+                                  style: TextStyle(fontSize: 12),
+                                )
                               ],
                             )),
                       ),
