@@ -89,10 +89,25 @@ class _TaskState extends State<Task> {
                       ),
                       Container(
                           width: 200,
-                          child: Text(
-                            widget.nome,
-                            style: TextStyle(fontSize: 24),
-                            overflow: TextOverflow.ellipsis,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget.nome,
+                                style: TextStyle(fontSize: 24),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Row(
+                                children: [
+                                  Icon(Icons.star, color: Colors.blue, size: 15,),
+                                  Icon(Icons.star, color: Colors.blue, size: 15,),
+                                  Icon(Icons.star, color: Colors.blue[100], size: 15,),
+                                  Icon(Icons.star, color: Colors.blue[100], size: 15,),
+                                  Icon(Icons.star, color: Colors.blue[100], size: 15,),
+                                ],
+                              )
+                            ],
                           )),
                       Container(
                         width: 80,
