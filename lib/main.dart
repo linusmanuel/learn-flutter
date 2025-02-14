@@ -27,11 +27,24 @@ class MyApp extends StatelessWidget {
         ),
         body: ListView(
           children: [
-            Task('Aprender Flutter', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
-            Task('Andar de Bike', 'https://images.pexels.com/photos/161172/cycling-bike-trail-sport-161172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
-            Task('Meditar', 'https://thebogotapost.com/wp-content/uploads/2017/06/636052464065850579-137719760_flyer-image-1.jpg'),
-            Task('Ler', 'https://manhattanmentalhealthcounseling.com/wp-content/uploads/2019/06/Top-5-Scientific-Findings-on-MeditationMindfulness-881x710.jpeg'),
-            Task('Jogar', 'https://i.ibb.co/tB29PZB/kako-epifania-2022-2-c-pia.jpg'),
+            Task(
+                'Aprender Flutter',
+                'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                2),
+            Task(
+                'Andar de Bike',
+                'https://images.pexels.com/photos/161172/cycling-bike-trail-sport-161172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                3),
+            Task(
+                'Meditar',
+                'https://thebogotapost.com/wp-content/uploads/2017/06/636052464065850579-137719760_flyer-image-1.jpg',
+                4),
+            Task(
+                'Ler',
+                'https://manhattanmentalhealthcounseling.com/wp-content/uploads/2019/06/Top-5-Scientific-Findings-on-MeditationMindfulness-881x710.jpeg',
+                5),
+            Task('Jogar',
+                'https://i.ibb.co/tB29PZB/kako-epifania-2022-2-c-pia.jpg', 0),
           ],
         ),
         floatingActionButton: FloatingActionButton(
@@ -46,10 +59,12 @@ class MyApp extends StatelessWidget {
 class Task extends StatefulWidget {
   final String nome;
   final String foto;
+  final int dificuldade;
 
   const Task(
     this.nome,
-    this.foto, {
+    this.foto,
+    this.dificuldade, {
     super.key,
   });
 
@@ -68,23 +83,35 @@ class _TaskState extends State<Task> {
         child: Stack(
           children: [
             Container(
-              color: Colors.blue,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                color: Colors.blue,
+              ),
               height: 140,
             ),
             Column(
               children: [
                 Container(
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: Colors.white,
+                  ),
                   height: 100,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        color: Colors.black26,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: Colors.black26),
                         width: 72,
                         height: 100,
-                        child: Image.network(widget.foto,
-                          fit: BoxFit.cover,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(4),
+                          child: Image.network(
+                            widget.foto,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       Container(
@@ -100,11 +127,41 @@ class _TaskState extends State<Task> {
                               ),
                               Row(
                                 children: [
-                                  Icon(Icons.star, color: Colors.blue, size: 15,),
-                                  Icon(Icons.star, color: Colors.blue, size: 15,),
-                                  Icon(Icons.star, color: Colors.blue[100], size: 15,),
-                                  Icon(Icons.star, color: Colors.blue[100], size: 15,),
-                                  Icon(Icons.star, color: Colors.blue[100], size: 15,),
+                                  Icon(
+                                    Icons.star,
+                                    color: (widget.dificuldade >= 1)
+                                        ? Colors.blue
+                                        : Colors.blue[100],
+                                    size: 15,
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: (widget.dificuldade >= 2)
+                                        ? Colors.blue
+                                        : Colors.blue[100],
+                                    size: 15,
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: (widget.dificuldade >= 3)
+                                        ? Colors.blue
+                                        : Colors.blue[100],
+                                    size: 15,
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: (widget.dificuldade >= 4)
+                                        ? Colors.blue
+                                        : Colors.blue[100],
+                                    size: 15,
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: (widget.dificuldade >= 5)
+                                        ? Colors.blue
+                                        : Colors.blue[100],
+                                    size: 15,
+                                  ),
                                 ],
                               )
                             ],
@@ -142,7 +199,9 @@ class _TaskState extends State<Task> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: LinearProgressIndicator(
-                            value: nivel / 10,
+                            value: widget.dificuldade > 0
+                                ? (nivel / widget.dificuldade) / 10
+                                : 1,
                             color: Colors.white,
                           ),
                         ),
