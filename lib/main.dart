@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nosso_primeiro_projeto/difficulty.dart';
 import 'package:nosso_primeiro_projeto/grid.dart';
 
 void main() {
@@ -82,7 +83,7 @@ class Task extends StatefulWidget {
   const Task(
     this.nome,
     this.foto,
-    this.dificuldade, {
+      this.dificuldade, {
     super.key,
   });
 
@@ -143,45 +144,7 @@ class _TaskState extends State<Task> {
                                 style: TextStyle(fontSize: 24),
                                 overflow: TextOverflow.ellipsis,
                               ),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    color: (widget.dificuldade >= 1)
-                                        ? Colors.blue
-                                        : Colors.blue[100],
-                                    size: 15,
-                                  ),
-                                  Icon(
-                                    Icons.star,
-                                    color: (widget.dificuldade >= 2)
-                                        ? Colors.blue
-                                        : Colors.blue[100],
-                                    size: 15,
-                                  ),
-                                  Icon(
-                                    Icons.star,
-                                    color: (widget.dificuldade >= 3)
-                                        ? Colors.blue
-                                        : Colors.blue[100],
-                                    size: 15,
-                                  ),
-                                  Icon(
-                                    Icons.star,
-                                    color: (widget.dificuldade >= 4)
-                                        ? Colors.blue
-                                        : Colors.blue[100],
-                                    size: 15,
-                                  ),
-                                  Icon(
-                                    Icons.star,
-                                    color: (widget.dificuldade >= 5)
-                                        ? Colors.blue
-                                        : Colors.blue[100],
-                                    size: 15,
-                                  ),
-                                ],
-                              )
+                              Difficulty(widget.dificuldade)
                             ],
                           )),
                       Container(
@@ -245,3 +208,4 @@ class _TaskState extends State<Task> {
     );
   }
 }
+
