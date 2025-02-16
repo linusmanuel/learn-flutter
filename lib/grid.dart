@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
-
 _buildContainer({Color color = Colors.black}) {
-  return Container(
-    color: color,
-    width: 120,
-    height: 120,
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        color: color,
+        border: Border.all(width: 3)
+      ),
+      child: Icon(Icons.person),
+      width: 120,
+      height: 120,
+    ),
   );
 }
 
