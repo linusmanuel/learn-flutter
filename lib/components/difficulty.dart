@@ -5,7 +5,7 @@ class Difficulty extends StatelessWidget {
     super.key,
   });
 
-  final difficultyLevel;
+  final int difficultyLevel;
 
   @override
   Widget build(BuildContext context) {

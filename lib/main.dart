@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:nosso_primeiro_projeto/Task.dart';
-import 'package:nosso_primeiro_projeto/difficulty.dart';
-import 'package:nosso_primeiro_projeto/grid.dart';
-import 'package:nosso_primeiro_projeto/initial_screen.dart';
+import 'package:nosso_primeiro_projeto/screens/initial_screen.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
 
-  MyApp({super.key});
+  const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

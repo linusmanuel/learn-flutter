@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nosso_primeiro_projeto/Task.dart';
+import 'package:nosso_primeiro_projeto/components/task.dart';
 
 class InitialScreen extends StatefulWidget {
   const InitialScreen({super.key});
@@ -55,8 +55,8 @@ class _InitialScreenState extends State<InitialScreen> {
             opacidade = !opacidade;
           });
         },
-        child: Icon(Icons.hide_image, color: Colors.white,),
         backgroundColor: Colors.blue,
+        child: Icon(Icons.hide_image, color: Colors.white,),
       ),
     );
   }
