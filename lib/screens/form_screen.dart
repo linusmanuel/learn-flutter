@@ -36,38 +36,59 @@ class _FormScreenState extends State<FormScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   controller: nameController,
-                  textAlign:  TextAlign.center,
+                  textAlign: TextAlign.center,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(borderSide: BorderSide()),
                       hintText: 'Nome',
-                      fillColor: Colors.white70, filled: true),
+                      fillColor: Colors.white70,
+                      filled: true),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   controller: difficultyController,
-                  textAlign:  TextAlign.center,
+                  textAlign: TextAlign.center,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(borderSide: BorderSide()),
                       hintText: 'Dificuldade',
-                      fillColor: Colors.white70, filled: true),
+                      fillColor: Colors.white70,
+                      filled: true),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
+                  onChanged: (text){
+                    setState(() {
+                    });
+                  },
                   controller: imageController,
-                  textAlign:  TextAlign.center,
+                  textAlign: TextAlign.center,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(borderSide: BorderSide()),
                       hintText: 'Imagem',
-                      fillColor: Colors.white70, filled: true),
+                      fillColor: Colors.white70,
+                      filled: true),
                 ),
               ),
-              ElevatedButton(onPressed: (){
-                print('$imageController, $difficultyController, $nameController');
-              }, child: Text('Adicionar'))
+              Container(
+                width: 72,
+                height: 100,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 2, color: Colors.blue),
+                    borderRadius: BorderRadius.circular(4)),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(4),
+                  child: Image.network(imageController.text, fit: BoxFit.cover,),
+                ),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    print(
+                        '$imageController, $difficultyController, $nameController');
+                  },
+                  child: Text('Adicionar'))
             ],
           ),
         ),
