@@ -31,6 +31,7 @@ class _FormScreenState extends State<FormScreen> {
               color: Colors.black12,
               border: Border.all(width: 2)),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -59,9 +60,8 @@ class _FormScreenState extends State<FormScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  onChanged: (text){
-                    setState(() {
-                    });
+                  onChanged: (text) {
+                    setState(() {});
                   },
                   controller: imageController,
                   textAlign: TextAlign.center,
@@ -76,11 +76,19 @@ class _FormScreenState extends State<FormScreen> {
                 width: 72,
                 height: 100,
                 decoration: BoxDecoration(
+                    color: Colors.blue,
                     border: Border.all(width: 2, color: Colors.blue),
                     borderRadius: BorderRadius.circular(4)),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(4),
-                  child: Image.network(imageController.text, fit: BoxFit.cover,),
+                  child: Image.network(
+                    imageController.text,
+                    errorBuilder: (BuildContext context, Object exception,
+                        StackTrace? stackTrace) {
+                      return Image.asset('assets/images/nophoto.png');
+                    },
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               ElevatedButton(
