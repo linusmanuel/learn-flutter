@@ -126,6 +126,11 @@ class _FormScreenState extends State<FormScreen> {
                           print('NomeController: $nameController');
                           print('DificuldadeController: $difficultyController');
                           print('ImagemController: $imageController');
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Salvando tarefa...'),
+                            ),
+                          );
                         }
                       },
                       child: Text('Adicionar'))
