@@ -123,9 +123,10 @@ class _FormScreenState extends State<FormScreen> {
                   ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          print('NomeController: $nameController');
-                          print('DificuldadeController: $difficultyController');
-                          print('ImagemController: $imageController');
+                          print('NomeController: ${nameController.text}');
+                          print('DificuldadeController: ${difficultyController.text}');
+                          print('ImagemController: ${imageController.text}');
+                          Navigator.pop(context);
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text('Salvando tarefa...'),
