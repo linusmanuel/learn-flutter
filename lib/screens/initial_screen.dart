@@ -24,24 +24,7 @@ class _InitialScreenState extends State<InitialScreen> {
       ),
       body: ListView(
         children: [
-          Task(
-              'Aprender Flutter',
-              'assets/images/dash.png',
-              2),
-          Task(
-              'Andar de Bike',
-              'assets/images/bike.webp',
-              3),
-          Task(
-              'Meditar',
-              'assets/images/meditar.jpeg',
-              4),
-          Task(
-              'Ler',
-              'assets/images/livro.jpg',
-              5),
-          Task('Jogar',
-              'assets/images/jogar.jpg', 0),
+
           SizedBox(height: 80,)
         ],
       ),
