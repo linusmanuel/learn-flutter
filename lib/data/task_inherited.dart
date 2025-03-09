@@ -4,8 +4,8 @@ import 'package:nosso_primeiro_projeto/components/task.dart';
 class  TaskInherited extends InheritedWidget {
   TaskInherited({
     super.key,
-    required Widget child,
-  }) : super(child: child);
+    required super.child,
+  });
 
   final List<Task> taskList = [
     Task('Aprender Flutter', 'assets/images/dash.png', 2),
@@ -19,14 +19,16 @@ class  TaskInherited extends InheritedWidget {
     taskList.add(Task(name, photo, difficulty));
   }
 
-  static  of(BuildContext context) {
-    final ? result = context.dependOnInheritedWidgetOfExactType<>();
-    assert(result != null, 'No  found in context');
+  static TaskInherited of(BuildContext context) {
+    final TaskInherited? result =
+    context.dependOnInheritedWidgetOfExactType<TaskInherited>();
+    assert(result != null, 'No TaskInherited found in context');
     return result!;
   }
 
+
   @override
-  bool updateShouldNotify( old) {
-    return ;
+  bool updateShouldNotify( TaskInherited oldWidget) {
+    return oldWidget.taskList.length != taskList.length;
   }
 }
