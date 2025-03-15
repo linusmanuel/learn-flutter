@@ -5,8 +5,11 @@ class Task extends StatefulWidget {
   final String nome;
   final String foto;
   final int dificuldade;
+  int nivel = 0;
 
-  const Task(
+
+  static double nivelGlobal = 0;
+  Task(
     this.nome,
     this.foto,
     this.dificuldade, {
@@ -18,7 +21,6 @@ class Task extends StatefulWidget {
 }
 
 class _TaskState extends State<Task> {
-  int nivel = 0;
   bool assetsOrNetwork() {
     if(widget.foto.contains('http')) {
       return false;
@@ -98,14 +100,15 @@ class _TaskState extends State<Task> {
                               backgroundColor: Colors.blue),
                           onPressed: () {
                             setState(() {
-                              nivel++;
+                              widget.nivel++;
+                              Task.nivelGlobal += widget.nivel;
                               double restartNivel =
-                                  (nivel / widget.dificuldade) / 10;
+                                  (widget.nivel / widget.dificuldade) / 10;
                               bool nivelComplete = restartNivel > 1;
                               if (nivelComplete &&
                                   mastery < colors.length - 1) {
                                 mastery++;
-                                nivel = 1;
+                                widget.nivel = 1;
                               }
                             });
                           },
@@ -137,7 +140,7 @@ class _TaskState extends State<Task> {
                       padding: const EdgeInsets.all(8.0),
                       child: LinearProgressIndicator(
                         value: widget.dificuldade > 0
-                            ? (nivel / widget.dificuldade) / 10
+                            ? (widget.nivel / widget.dificuldade) / 10
                             : 1,
                         color: Colors.white,
                       ),
@@ -146,7 +149,7 @@ class _TaskState extends State<Task> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "Nivel $nivel",
+                      "Nivel ${widget.nivel}",
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
