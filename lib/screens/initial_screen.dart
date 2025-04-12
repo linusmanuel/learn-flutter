@@ -3,6 +3,8 @@ import 'package:nosso_primeiro_projeto/components/task.dart';
 import 'package:nosso_primeiro_projeto/data/task_inherited.dart';
 import 'package:nosso_primeiro_projeto/screens/form_screen.dart';
 
+import '../data/task_dao.dart';
+
 class InitialScreen extends StatefulWidget {
   const InitialScreen({super.key});
 
@@ -39,9 +41,12 @@ class _InitialScreenState extends State<InitialScreen> {
           ),
         ],
       ),
-      body: ListView(
-        children: TaskInherited.of(context).taskList,
+      body: Padding(
         padding: EdgeInsets.only(top: 20, bottom: 70),
+        child: FutureBuilder<List<Task>>(future: TaskDao().findAll(), builder: (context, snapshot){
+          List<Task>? items = snapshot.data;
+          return ListView.builder(itemCount: items.length, itemBuilder: (BuildContext context, int index){});
+        }),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

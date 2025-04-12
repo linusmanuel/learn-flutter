@@ -47,7 +47,7 @@ class TaskDao {
     return toList(result);
   }
 
-  List<Task> toList(Task mapaDeTarefas) {
+  List<Task> toList(List<Map<String, dynamic>> mapaDeTarefas) {
     print("Convertendo to List");
     final List<Task> tarefas = [];
     for(Map<String, dynamic> linha in mapaDeTarefas) {
