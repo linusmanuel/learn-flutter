@@ -13,7 +13,6 @@ class InitialScreen extends StatefulWidget {
 }
 
 class _InitialScreenState extends State<InitialScreen> {
-
   double globalLevel = 0;
   double progressBarValue = 0;
 
@@ -43,17 +42,84 @@ class _InitialScreenState extends State<InitialScreen> {
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 20, bottom: 70),
-        child: FutureBuilder<List<Task>>(future: TaskDao().findAll(), builder: (context, snapshot){
-          List<Task>? items = snapshot.data;
-          return ListView.builder(itemCount: items.length, itemBuilder: (BuildContext context, int index){});
-        }),
+        child: FutureBuilder<List<Task>>(
+            future: TaskDao().findAll(),
+            builder: (context, snapshot) {
+              List<Task>? items = snapshot.data;
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
+                  return Center(
+                    child: Column(
+                      children: [
+                        CircularProgressIndicator(),
+                        Text('Carregando'),
+                      ],
+                    ),
+                  );
+                case ConnectionState.waiting:
+                  return Center(
+                    child: Column(
+                      children: [
+                        CircularProgressIndicator(),
+                        Text('Carregando'),
+                      ],
+                    ),
+                  );
+                case ConnectionState.active:
+                  return Center(
+                    child: Column(
+                      children: [
+                        CircularProgressIndicator(),
+                        Text('Carregando'),
+                      ],
+                    ),
+                  );
+                case ConnectionState.done:
+                  if (snapshot.hasData && items != null) {
+                    if (items.isNotEmpty) {
+                      return ListView.builder(
+                          itemCount: items.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final Task tarefa = items[index];
+                            return tarefa;
+                          });
+                    }
+                    return Center(
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.error_outline,
+                            size: 128,
+                          ),
+                          Text(
+                            'Não há nenhuma Tarefa',
+                            style: TextStyle(fontSize: 32),
+                          )
+                        ],
+                      ),
+                    );
+                  }
+                  return Text('Erro ao carregar Tarefas');
+                  throw UnimplementedError();
+              }
+              return Text('Erro desconhecido!');
+            }),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (contextNew) => FormScreen(taskContext: context,),));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (contextNew) => FormScreen(
+                  taskContext: context,
+                ),
+              ));
         },
         backgroundColor: Colors.blue,
-        child: Icon(Icons.add, color: Colors.white,),
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }
